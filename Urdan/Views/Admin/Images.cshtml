@@ -1,0 +1,62 @@
+﻿@model List<Image>
+
+
+@{
+  ViewBag.Title = "Images";
+}
+
+<div class="container pt-4">
+  <h1>Images</h1>
+  <a asp-action="CreateImage" class="btn btn-primary mb-2">Create new</a>
+  <hr />
+  <div class="row pt-2">
+    <div class="col">
+      <table class="table table-light table-hover">
+        <thead>
+          <tr>
+            <th scope="col">
+              @Html.DisplayNameFor(model => model.First().Id)
+            </th>
+            <th scope="col">
+              @Html.DisplayNameFor(model => model.First().Url)
+            </th>
+            <td scope="col">
+              Image
+            </td>
+            <th scope="col">
+              @Html.DisplayNameFor(model => model.First().Product)
+            </th>
+            <th scope="col">
+              Action
+            </th>
+          </tr>
+
+
+        </thead>
+        <tbody>
+          @foreach (var item in Model)
+          {
+            <tr>
+              <td>@item.Id</td>
+              <td>@item.Url</td>
+              <td>
+                <img src="@item.Url" alt="@item.Id" class="rounded" width="60" height="60" />
+              </td>
+              <td>@item.Product?.Name</td>
+              <td>
+                <div class="d-flex">
+                  <a asp-action="EditImage" asp-route-id="@item.Id" class="btn btn-warning me-3">Edit</a>
+
+                  <button type="button" onclick="handleDeleteImage(@item.Id)" id="@item.Id" class="btn btn-danger">
+                    Delete
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

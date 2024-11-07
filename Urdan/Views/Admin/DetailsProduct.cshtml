@@ -1,0 +1,159 @@
+﻿@model Product;
+@{
+  ViewBag.Title = "Details Product";
+}
+
+<div class="container pt-4">
+  <h1>Details</h1>
+  <h4>Product</h4>
+  <hr />
+  <div>
+    <dl class="row">
+      <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Id)
+      </dt>
+      <dd class="col-sm-10">
+        @Model.Id
+      </dd>
+
+      <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Name)
+      </dt>
+      <dd class="col-sm-10">
+        @Model.Name
+      </dd>
+
+      <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Size)
+      </dt>
+      <dd class="col-sm-10">
+        @Model.Size
+      </dd>
+
+      <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Height)
+      </dt>
+      <dd class="col-sm-10">
+        @(Model.Height)kg
+      </dd>
+
+      <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Material)
+      </dt>
+      <dd class="col-sm-10">
+        @Model.Material
+      </dd>
+
+      <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Description)
+      </dt>
+      <dd class="col-sm-10">
+        @Model.Description
+      </dd>
+
+      <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Price)
+      </dt>
+      <dd class="col-sm-10">
+        $@Model.Price
+      </dd>
+
+      <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Discount)
+      </dt>
+      <dd class="col-sm-10">
+        @Model.Discount%
+      </dd>
+
+      <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.PriceTotal)
+      </dt>
+      <dd class="col-sm-10">
+        $@Model.PriceTotal
+      </dd>
+
+      <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Brand)
+      </dt>
+      <dd class="col-sm-10">
+        @Model.Brand.Name
+      </dd>
+
+      <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Category)
+      </dt>
+      <dd class="col-sm-10">
+        @Model.Category.Name
+      </dd>
+
+      <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.CreatedAt)
+      </dt>
+      <dd class="col-sm-10">@Model.CreatedAt</dd>
+
+      @if (Model.Images?.Count() > 0)
+      {
+        <dt class="col-sm-2">
+          @Html.DisplayNameFor(model => model.Images)
+        </dt>
+        <dd class="col-sm-10">
+          <table class="table table-responsive table-light table-hover">
+            <thead>
+              <tr>
+                <th>@Html.DisplayNameFor(model => model.Images.First().Id)</th>
+                <th>@Html.DisplayNameFor(model => model.Images.First().Url)</th>
+                <th>Image</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach (var image in Model.Images)
+              {
+                <tr>
+                  <td>@image.Id</td>
+                  <td>@image.Url</td>
+                  <td>
+                    <img src="@image.Url" alt="@image.Id" class="rounded" width="60" height="60" />
+                  </td>
+                </tr>
+              }
+            </tbody>
+
+          </table>
+        </dd>
+      }
+
+      @if (Model.Colors?.Count() > 0)
+      {
+        <dt class="col-sm-2">
+          @Html.DisplayNameFor(model => model.Colors)
+        </dt>
+        <dd class="col-sm-10">
+          <table class="table table-responsive table-light table-hover">
+            <thead>
+              <tr>
+                <th>@Html.DisplayNameFor(model => model.Colors.First().Id)</th>
+                <th>@Html.DisplayNameFor(model => model.Colors.First().Name)</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach (var color in Model.Colors)
+              {
+                <tr>
+                  <td>@color.Id</td>
+                  <td>@color.Name</td>
+                </tr>
+              }
+            </tbody>
+
+          </table>
+        </dd>
+      }
+
+    </dl>
+  </div>
+
+  <p>
+    <a asp-action="EditProduct" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Products">Back to Lists</a>
+  </p>
+</div>

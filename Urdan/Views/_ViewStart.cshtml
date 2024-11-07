@@ -1,0 +1,15 @@
+﻿@{
+  var controllerName = Context.Request.RouteValues["controller"].ToString();
+  if (controllerName == "Admin")
+  {
+    Layout = "_AdminLayout";
+
+  } else if (controllerName == "Account")
+  {
+    Layout = "_AccountLayout";
+  }
+  else
+  {
+    Layout = "_Layout";
+  }
+}

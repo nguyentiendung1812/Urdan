@@ -1,0 +1,12 @@
+﻿@model List<Category>
+
+<ul class="sub-menu">
+	@foreach (Category category in Model)
+	{
+		<li>
+			<a asp-action="Index" asp-controller="Products" asp-route-category="@category.Name">@category.Name</a>
+		</li>
+	}
+	
+	
+</ul>

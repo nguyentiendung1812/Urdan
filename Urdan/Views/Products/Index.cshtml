@@ -1,0 +1,223 @@
+﻿@using X.PagedList.Web.Common;
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<Product>;
+@{
+	ViewBag.Title = "Products";
+}
+
+<partial name="_Breadcrumb" />
+<section class="pt-100 pb-100">
+	<div class="container">
+		<div class="row flex-row-reverse">
+			<div class="col-lg-9">
+				<div class="products-top">
+					<span>Showing @Model.FirstItemOnPage-@Model.LastItemOnPage of @Model.TotalItemCount results</span>
+
+					<form method="get" class="products-filter">
+						<select id="sort" name="sort" class="form-select" onchange="this.form.submit()" asp-items="@ViewBag.SelectListSort">
+						</select>
+					</form>
+
+				</div>
+				<div class="products-bottom">
+					<div class="row">
+
+						@foreach (var (product, i) in Model.Select((v, i) => (v, i)))
+						{
+							int delay = 200 * (i + 1);
+							<div class="col-lg-4 col-md-4 col-sm-6 col-12">
+								<div class="modal fade product-quickview" tabindex="-1" id="productModal-@product.Id">
+									<div class="modal-dialog modal-dialog-centered">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+													<i class="ti-close"></i>
+												</button>
+											</div>
+											<div class="modal-body">
+												<div class="row gx-0">
+													<div class="col-lg-5 col-md-5 col-12">
+														<img src="@product.Images?.FirstOrDefault()?.Url" alt="@product.Name" class="w-100" />
+													</div>
+													<div class="col-lg-7 col-md-7 col-12">
+														<div class="product-content">
+															<h2>@product.Name</h2>
+															@if (product.Discount != 0)
+															{
+																<div class="product-price">
+																	<span class="old-price">$@product.Price</span>
+																	<span class="new-price">$@product.PriceTotal</span>
+																</div>
+															}
+															else
+															{
+																<span class="product-price">
+																	$@product.PriceTotal
+																</span>
+															}
+
+
+															@if (product.Colors != null)
+															{
+																<div class="product-color">
+																	<span>Color:</span>
+																	<ul>
+																		@foreach (var (color, indexColor) in product.Colors.Select((v, i) => (v, i)))
+																		{
+																			var activeClass = indexColor == 0 ? "active" : "";
+																			<li>
+																				<button type="button" class="@activeClass" style="background: @color.Name.ToLower()" id="@color.Name"></button>
+																			</li>
+																		}
+																	</ul>
+																</div>
+															}
+
+															<p>@product.Description</p>
+
+															<div class="product-action">
+																<div class="product-quantity">
+																	<button type="button">
+																		-
+																	</button>
+																	<input type="text" value="1" maxlength="3" />
+																	<button type="button">
+																		+
+																	</button>
+																</div>
+																<button type="button" class="product-cart btn-hover" onclick="addToCart(@product.Id)">Add to cart</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="product-slide mb-30" data-aos="fade-up" data-aos-delay="@delay">
+									<div class="product-img">
+										<a asp-action="Index" asp-controller="Product" asp-route-name="@product.Name">
+											<img src="@product.Images?.FirstOrDefault()?.Url" alt="Product Image" />
+										</a>
+										@if (product.Discount > 0)
+										{
+											<span class="product-discount">
+												-@product.Discount%
+											</span>
+										}
+										<div class="product-action-1">
+											<button type="button" title="Wishlist">
+												<i class="pe-7s-like"></i>
+											</button>
+											<button type="button" title="Quick View" data-bs-toggle="modal" data-bs-target="#productModal-@product.Id">
+												<i class="pe-7s-look"></i>
+											</button>
+
+										</div>
+										<div class="product-action-2">
+											<a title="Add To Cart" asp-action="AddToCart" asp-route-productId="@product.Id" asp-controller="Cart" class="product-action-btn-2">
+												<i class="pe-7s-cart"></i>
+												Add to cart
+											</a>
+										</div>
+									</div>
+									<div class="product-content">
+										<h3>
+											<a asp-action="Index" asp-controller="Product" asp-route-name="@product.Name">
+												@product.Name
+											</a>
+										</h3>
+										<div class="product-price">
+											@if (product.Discount > 0)
+											{
+												<span class="old-price">
+													$@product.Price
+												</span>
+												<span class="new-price">
+													$@product.PriceTotal
+												</span>
+											}
+											else
+											{
+												<span>$@product.PriceTotal</span>
+											}
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+						}
+
+					</div>
+				</div>
+				<div data-aos="fade-up" data-aos-delay="200" class="product-pagination">
+					@Html.PagedListPager(Model, page => Url.Action("Index", new { page,category = ViewBag.CurrentCategory,brand = ViewBag.CurrentBrand, price = ViewBag.PriceFilter ,search = ViewBag.ProductSearch,sort = ViewBag.CurrentSort }),new PagedListRenderOptions {
+					LinkToPreviousPageFormat = "<i class='ti-angle-double-left'></i>",
+					LinkToNextPageFormat = "<i class='ti-angle-double-right'></i>"
+					})
+				</div>
+			</div>
+			<div class="col-lg-3">
+				<form asp-action="Index" class="search mb-40" method="get">
+					<input type="text" name="search" id="search" placeholder="Search" value="@ViewBag.ProductSearch" />
+					<button type="submit">
+						<i class="ti-search"></i>
+					</button>
+				</form>
+				<div class="mb-40 pb-35 sidebar-border">
+					<div class="sidebar-title mb-30">
+						<h3>
+							Price
+						</h3>
+					</div>
+					<div class="price-filter">
+						<div id="slider-range"></div>
+						<form class="price-amount" asp-action="Index" method="get">
+							<div>
+								<label for="amount">Price:</label>
+								<input type="text" name="price" id="amount" value="@ViewBag.PriceFilter" readonly />
+							</div>
+							<button type="submit">Filter</button>
+						</form>
+					</div>
+				</div>
+				<div class="mb-40 pb-35 sidebar-border">
+					<div class="sidebar-title mb-30">
+						<h3>
+							Brand
+						</h3>
+					</div>
+					<ul class="sidebar-menu scrollbar">
+						@foreach (var brand in (List<Brand>)ViewBag.Brands)
+						{
+							<li>
+								<a asp-route-brand="@brand.Name">
+									@brand.Name
+									<span>@brand.Products?.Count()</span>
+								</a>
+							</li>
+						}
+					</ul>
+				</div>
+				<div>
+					<div class="sidebar-title mb-30">
+						<h3>Color</h3>
+					</div>
+					<ul class="sidebar-menu">
+
+						@foreach (var color in (List<string>)ViewBag.Colors)
+						{
+							<li>
+								<a asp-route-color="@color">
+									@color
+								</a>
+							</li>
+						}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+

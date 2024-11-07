@@ -1,0 +1,57 @@
+﻿@model Address
+
+
+@{
+  ViewBag.Title = "Create Address";
+}
+
+
+<div class="container pt-4">
+  <h1>Create</h1>
+  <h4>Address</h4>
+  <hr />
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <form asp-action="HandleCreateAddress" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group mb-3">
+          <label asp-for="Ward" class="form-label"></label>
+          <input asp-for="Ward" class="form-control" />
+          <span asp-validation-for="Ward" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+          <label asp-for="District" class="form-label"></label>
+          <input asp-for="District" class="form-control" />
+          <span asp-validation-for="District" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+          <label asp-for="City" class="form-label"></label>
+          <input asp-for="City" class="form-control" />
+          <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+          <label asp-for="Detail" class="form-label"></label>
+          <input asp-for="Detail" class="form-control" />
+          <span asp-validation-for="Detail" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+          <label asp-for="User" class="form-label"></label>
+          <select asp-for="UserId" asp-items="ViewBag.Users" class="form-select" ></select>
+          <span asp-validation-for="UserId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div>
+    <a asp-action="Addresses">Back to List</a>
+  </div>
+</div>
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

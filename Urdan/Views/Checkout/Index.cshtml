@@ -1,0 +1,141 @@
+﻿@model Order;
+@{
+	ViewBag.Title = "Checkout";
+	var userId = User.Claims.FirstOrDefault(claim => claim.Type == "Id")?.Value;
+	var email = User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Email)?.Value;
+	Cart cart = ViewBag.Cart;
+}
+
+<partial name="_breadcrumb" />
+<div class="pt-100 pb-100 container checkout">
+	<form asp-action="CreateOrder" method="post" class="row">
+		<div class="col-lg-7">
+			<div class="billing-info">
+				<h3>Billing Details</h3>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 mb-4">
+						<label class="form-label">
+							First Name <abbr title="required">*</abbr>
+						</label>
+						<input class="form-control" asp-for="ShippingAddress.FirstName" value="@ViewBag.Address?.FirstName"  />
+						<span asp-validation-for="ShippingAddress.FirstName" class="form-text text-danger"></span>
+					</div>
+					<div class="col-lg-6 col-md-6 mb-4">
+						<label class="form-label">
+							Last Name <abbr title="required">*</abbr>
+						</label>
+						<input class="form-control" asp-for="ShippingAddress.LastName" value="@ViewBag.Address?.LastName" />
+						<span asp-validation-for="ShippingAddress.LastName" class="form-text text-danger"></span>
+					</div>
+					<div class="col-lg-12 mb-4">
+						<label class="form-label">
+							Phone <abbr title="required">*</abbr>
+						</label>
+						<input class="form-control" asp-for="ShippingAddress.Phone" value="@ViewBag.Address?.Phone" />
+						<span asp-validation-for="ShippingAddress.Phone" class="form-text text-danger"></span>
+					</div>
+					<div class="col-lg-12 mb-4">
+						<label class="form-label">
+							Email <abbr title="required">*</abbr>
+						</label>
+						<input class="form-control" value="@email" disabled />
+						<input hidden asp-for="UserId" value="@userId" />
+					</div>
+
+					<div class="col-lg-6 col-md-6 mb-4">
+						<label  class="form-label">
+						Ward <abbr title="required">*</abbr>
+						</label>
+						<input class="form-control" asp-for="ShippingAddress.Ward" value="@ViewBag.Address?.Ward" />
+						<span asp-validation-for="ShippingAddress.Ward" class="form-text text-danger"></span>
+					</div>
+					
+					<div class="col-lg-6 col-md-6 mb-4">
+						<label  class="form-label">
+							District <abbr title="required">*</abbr>
+						</label>
+						<input class="form-control" asp-for="ShippingAddress.District" value="@ViewBag.Address?.District" />
+						<span asp-validation-for="ShippingAddress.District" class="form-text text-danger"></span>
+					</div>
+					
+					<div class="col-lg-6 col-md-6 mb-4">
+						<label  class="form-label">
+							City <abbr title="required">*</abbr>
+						</label>
+						<input class="form-control" asp-for="ShippingAddress.City" value="@ViewBag.Address?.City" />
+						<span asp-validation-for="ShippingAddress.City" class="form-text text-danger"></span>
+					</div>
+					
+					<div class="col-lg-6 col-md-6 mb-4">
+						<label  class="form-label">
+							Detail <abbr title="required">*</abbr>
+						</label>
+						<input class="form-control" asp-for="ShippingAddress.Detail" value="@ViewBag.Address?.Detail" />
+						<span asp-validation-for="ShippingAddress.Detail" class="form-text text-danger"></span>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-5">
+			<div class="your-order">
+				<div>
+					<h3>Your Order</h3>
+					<div>
+						<div class="your-order-info">
+							Product
+							<span>Total</span>
+						</div>
+						<ul class="your-order-cart">
+							@foreach (var item in cart.CartItems)
+							{
+								<li>
+									<span>
+										@item.ProductName X @item.Quantity<br>
+										<span class="color">@item.Color</span>
+									</span>
+									<span>$@item.SubTotal</span>
+								</li>
+							}
+						</ul>
+						<div class="your-order-info order">
+							Subtotal
+							<span>$@cart.PriceTotal</span>
+						</div>
+						<div class="your-order-info order">
+							Shipping
+							<span>$10.00</span>
+							<input asp-for="ShippingFee" value="10" hidden />
+						</div>
+						<div class="your-order-info order">
+							Total
+							<span class="order-total">$@(cart.PriceTotal + 10)</span>
+							<input hidden asp-for="Total" value="@(cart.PriceTotal + 10)" />
+						</div>
+					</div>
+				</div>
+				<div class="payment-method">
+					<div class="group">
+						<input class="form-check-input" type="radio" asp-for="PaymentMethod" value="Cash on delivery" checked />
+						<label class ="form-check-label">Cash on delivery</label>
+						<p>
+							You only have to pay when you receive the item
+						</p>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary">
+						Place Order
+				</button>
+			</div>
+			
+		</div>
+	</form>
+</div>
+
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+  }
+

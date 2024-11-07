@@ -1,0 +1,36 @@
+﻿@model List<Address>;
+@{
+	ViewBag.Title = "Billing Address";
+}
+
+
+<h3>@ViewBag.Title</h3>
+<a type="button" class="btn btn-primary mb-4" asp-action="AddAddress">Add address</a>
+<div>
+	@foreach (var address in Model)
+	{
+		<div class="d-flex justify-content-between align-items-center">
+			<address>
+				<strong>@address.FirstName @address.LastName</strong>
+				@if (address.IsDefault)
+				{
+					<span class="ms-2">Default Address</span>
+				}
+				<p>
+					@address.Detail<br />
+					@address.Ward, @address.District, @address.City
+				</p>
+				<p>Mobile: @address.Phone</p>
+			</address>
+			<div>
+				<a class="btn-link" asp-action="EditAddress">Edit</a>
+				<form asp-action="DeleteAddress" method="post">
+					<input name="id" value="@address.Id" hidden />
+					<button type="submit" class="btn-link text-danger">Delete</button>
+				</form>
+			</div>
+		</div>
+
+	}
+
+</div>

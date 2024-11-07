@@ -1,0 +1,67 @@
+﻿.checkout h3 {
+    font-size: 22px;
+    position: relative;
+    margin-bottom: 50px;
+    font-weight: 500;
+}
+
+.checkout h3:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: -12px;
+    background: var(--orange);
+    width: 50px;
+    height: 2px;
+}
+
+
+label abbr {
+    color: red;
+}
+
+.your-order {
+    padding: 40px;
+    border: 2px solid rgba(52, 53, 56,0.1);
+}
+
+.your-order-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(232 232 232);
+    padding-bottom: 7px;
+    font-weight: 500;
+}
+
+.your-order-info span {
+    color: var(--orange);
+}
+
+.your-order-info span.order-total {
+    font-size: 20px;
+}
+
+.your-order-cart {
+    padding: 24px 0;
+    border-bottom: 1px solid rgb(232 232 232);
+}
+
+.your-order-cart .color {
+    color: rgb(104 104 104);
+    font-size: 14px;
+}
+
+.your-order-cart li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.your-order .order {
+    padding: 16px 0;
+}
+
+.payment-method {
+    margin-top: 40px;
+}

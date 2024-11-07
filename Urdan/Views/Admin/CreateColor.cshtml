@@ -1,0 +1,41 @@
+﻿@model Color;
+@{
+  ViewBag.Title = "Create Color";
+}
+
+<div class="container pt-4">
+  <h1>Create</h1>
+  <h4>Color</h4>
+  <hr />
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <form asp-action="HandleCreateColor" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group mb-3">
+          <label asp-for="Name" class="form-label"></label>
+          <input asp-for="Name" class="form-control" />
+          <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+          <label asp-for="Product" class="form-label"></label>
+          <select asp-for="ProductId" asp-items="Model.Products" class="form-select">
+          </select>
+          <span asp-validation-for="ProductId" class="text-danger"></span>
+        </div>
+    
+        <div class="form-group">
+          <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div>
+    <a asp-action="Colors">Back to List</a>
+  </div>
+</div>
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

@@ -1,0 +1,85 @@
+﻿@{
+	var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+	string ActiveClasses(string[] actions)
+	{
+		foreach (var action in actions)
+		{
+			if (action == currentAction)
+			{
+				return "active";
+			}
+		}
+		return "";
+	}
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<style>
+		.truncate-2 {
+			-webkit-line-clamp: 2;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+		}
+	</style>
+	<title>Urdan - @ViewBag.Title</title>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" asp-action="Index">
+				Urdan Admin
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse admin-menu" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+					<li class="nav-item">
+						<a class="nav-link @ActiveClasses(new string[] {"Users","CreateUser","EditUser"})" aria-current="page" asp-action="Users">Users</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link @ActiveClasses(new string[] {"Products","CreateProduct","EditProduct"})" asp-action="Products">Products</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link @ActiveClasses(new string[] {"Brands","CreateBrand","EditBrand"})" asp-action="Brands">Brands</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link @ActiveClasses(new string[] {"Images","CreateImage","EditImage"})" asp-action="Images">Images</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link @ActiveClasses(new string[] {"Colors","CreateColor","EditColor"})" asp-action="Colors">Colors</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link @ActiveClasses(new string[] {"Addresses","CreateAddress","EditAddress"})" asp-action="Addresses">Addresses</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link @ActiveClasses(new string[] {"Orders","CreateOrder","EditOrder"})" asp-action="Orders">Orders</a>
+					</li>
+				</ul>
+			</div>
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" asp-action="Index" asp-controller="Account">
+						@User.Identity?.Name
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" asp-action="Logout" asp-controller="Account">Logout</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<section style="padding-top: 56px;">
+		@RenderBody()
+	</section>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/admin/index.js"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

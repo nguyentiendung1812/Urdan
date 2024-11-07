@@ -1,0 +1,61 @@
+﻿.cart-table thead {
+    background: rgb(243 243 243);
+}
+
+.cart-table thead th {
+    padding: 14px;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-align: left;
+}
+
+.cart-table tbody td {
+    padding: 14px;
+    font-size: 16px;
+}
+
+.cart-table tbody td i {
+    font-size: 18px;
+} 
+
+.cart-total {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 21px;
+}
+
+
+.cart-total strong {
+    color: var(--orange);
+    font-weight: 600;
+    width: 15%;
+    text-align: right;
+}
+
+.cart-update {
+    padding-top: 30px;
+    padding-bottom: 95px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 16px;
+}
+
+.cart-update a {
+    background: rgb(242 242 242);
+    padding: 17px 30px;
+    font-size: 16px;
+    letter-spacing: .3px;
+    transition: all .5s ease-in-out;
+}
+
+.cart-update .btn-checkout {
+    background: var(--orange);
+    color: white;
+}
+
+.cart-update .btn-hover:hover {
+    color: white;
+}

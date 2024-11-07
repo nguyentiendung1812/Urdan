@@ -1,0 +1,59 @@
+﻿@model Address;
+@{
+	ViewBag.Title = "Edit Address";
+}
+
+
+<h3>@ViewBag.Title</h3>
+<form asp-action="HandleEditAddress" method="post" class="mb-4">
+	<input hidden asp-for="UserId" />
+	<div class="mb-4">
+		<label class="form-label">FirstName</label>
+		<input asp-for="FirstName" class="form-control" />
+		<span asp-validation-for="FirstName" class="form-text text-danger"></span>
+	</div>
+	<div class="mb-4">
+		<label class="form-label">LastName</label>
+		<input asp-for="LastName" class="form-control" />
+		<span asp-validation-for="LastName" class="form-text text-danger"></span>
+	</div>
+	<div class="mb-4">
+		<label class="form-label">Ward</label>
+		<input asp-for="Ward" class="form-control" />
+		<span asp-validation-for="Ward" class="form-text text-danger"></span>
+	</div>
+	<div class="mb-4">
+		<label class="form-label">District</label>
+		<input asp-for="District" class="form-control" />
+		<span asp-validation-for="District" class="form-text text-danger"></span>
+	</div>
+	<div class="mb-4">
+		<label class="form-label">City</label>
+		<input asp-for="City" class="form-control" />
+		<span asp-validation-for="City" class="form-text text-danger"></span>
+	</div>
+	<div class="mb-4">
+		<label class="form-label">Detail</label>
+		<input asp-for="Detail" class="form-control" />
+		<span asp-validation-for="Detail" class="form-text text-danger"></span>
+	</div>
+	<div class="mb-4">
+		<label class="form-label">Phone</label>
+		<input asp-for="Phone" class="form-control" />
+		<span asp-validation-for="Phone" class="form-text text-danger"></span>
+	</div>
+	<div class="mb-4 form-check">
+		<input asp-for="IsDefault" class="form-check-input" />
+		<label class="form-check-label">IsDefault</label>
+		<span asp-validation-for="IsDefault" class="form-text text-danger"></span>
+	</div>
+	<button type="submit" class="btn btn-primary">Edit</button>
+</form>
+<a asp-action="Addresses" class="btn-link">Back to List</a>
+
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

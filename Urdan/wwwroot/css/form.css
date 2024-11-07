@@ -1,0 +1,55 @@
+﻿.tab-title {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tab-title a {
+    font-size: 26px;
+    margin: 0 20px;
+    font-weight: 500;
+    text-transform: capitalize;
+    line-height: 1.2;
+}
+
+.tab-title .bar {
+    height: 18px;
+    width: 1px;
+    background: rgb(69 69 69);
+}
+
+.tab-content {
+    padding: 80px;
+    border-radius: 6px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+}
+
+.form .form-group {
+    margin-bottom: 30px;
+}
+
+
+
+.form .form-error {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+
+.form .btn {
+    background: var(--orange);
+    color: white;
+    border: none;
+}
+
+.form .btn::after {
+    border-radius: 0.25rem;
+}
+
+
+@media only screen and (min-width: 776px) {
+    .tab-title {
+        margin-bottom: 40px;
+    }
+}

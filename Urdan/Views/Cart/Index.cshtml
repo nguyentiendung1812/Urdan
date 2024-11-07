@@ -1,0 +1,75 @@
+﻿@model Cart?;
+
+@{
+	ViewBag.Title = "Cart";
+}
+
+<partial name="_Breadcrumb" />
+<div class="container pt-100 pb-100">
+	<div class="row">
+		<div class="col-12">
+			<table class="table cart-table">
+				<thead>
+					<tr>
+						<th></th>
+						<th>
+							Product
+						</th>
+						<th>@Html.DisplayNameFor(model => model.CartItems.First().Price)</th>
+						<th>@Html.DisplayNameFor(model => model.CartItems.First().Color)</th>
+						<th>@Html.DisplayNameFor(model => model.CartItems.First().Quantity)</th>
+						<th>Subtotal</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					@if (Model != null && Model.CartItems.Count() > 0)
+					{
+						@foreach (var cartItem in Model.CartItems)
+						{
+							<tr>
+								<td>
+									<img src="@cartItem.Image" alt="Product Image" width="80" />
+								</td>
+								<td>
+									<a asp-action="Index" asp-route-name="@cartItem.ProductName" asp-controller="Product">
+										@cartItem.ProductName
+									</a>
+								</td>
+								<td>
+									$@cartItem.Price
+								</td>
+								<td>
+									@cartItem.Color
+								</td>
+								<td>
+									<input type="number" value="@cartItem.Quantity" id="@cartItem.Id" class="form-control w-auto cart-quantity" min="1" max="999" maxlength="3" />
+								</td>
+								<td>
+									$@cartItem.SubTotal
+								</td>
+								<td>
+									<a asp-action="DeleteCart" asp-route-id="@cartItem.Id" type="button">
+										<i class="ti-trash"></i>
+									</a>
+								</td>
+							</tr>
+						}
+					}
+
+				</tbody>
+			</table>
+			<div class="cart-total">
+				<span>Total:</span>
+				<strong>$@(Model?.PriceTotal ?? 0)</strong>
+			</div>
+			<div class="cart-update">
+				<a asp-action="Index" asp-controller="Products" class="btn-hover">Continue Shopping</a>
+				<a asp-action="Index" asp-controller="Checkout" class="btn-checkout btn-hover">Process To Checkout</a>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+

@@ -1,0 +1,60 @@
+﻿@model List<Order>;
+@{
+	ViewBag.Title = "Orders";
+}
+
+
+<h3>@ViewBag.Title</h3>
+<table class="table table-responsive table-light table-hover">
+	<thead>
+		<tr>
+			<th scope="col">
+				@Html.DisplayNameFor(model => model.First().Id)
+			</th>
+			<th scope="col">
+				@Html.DisplayNameFor(model => model.First().Status)
+			</th>
+			<th scope="col">
+				@Html.DisplayNameFor(model => model.First().PaymentMethod)
+			</th>
+			<th scope="col">
+				@Html.DisplayNameFor(model => model.First().ShippingFee)
+			</th>
+			<th scope="col">
+				@Html.DisplayNameFor(model => model.First().Total)
+			</th>
+			<th scope="col">
+				@Html.DisplayNameFor(model => model.First().User)
+			</th>
+			<th scope="col">
+				@Html.DisplayNameFor(model => model.First().ShippingAddress)
+			</th>
+			<th scope="col">
+				@Html.DisplayNameFor(model => model.First().DeliveryDate)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.First().CreatedAt)
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@item.Id</td>
+				<td>@item.Status</td>
+				<td>@item.PaymentMethod</td>
+				<td>$@item.ShippingFee</td>
+				<td>
+					$@item.Total
+				</td>
+				<td>@item.User?.Username</td>
+				<td>@item.ShippingAddress?.Detail, @item.ShippingAddress?.Ward, @item.ShippingAddress?.District, @item.ShippingAddress?.City</td>
+				<td>@Html.DisplayFor(model => item.DeliveryDate)</td>
+				<td>@item.CreatedAt</td>
+
+			</tr>
+		}
+	</tbody>
+</table>
+

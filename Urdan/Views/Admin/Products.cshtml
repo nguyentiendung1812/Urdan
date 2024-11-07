@@ -1,0 +1,117 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
+@model X.PagedList.IPagedList<Product>;
+
+@{
+	ViewBag.Title = "Products";
+}
+
+<div class="container pt-4">
+	<h1>@ViewBag.Title</h1>
+	<a asp-action="CreateProduct" class="btn btn-primary mb-2">Create new</a>
+	<form asp-action="Products" method="get">
+		<div class="form-group">
+			<label for="search">
+				Find by Name:
+			</label>
+			<input type="text" name="search" id="search" class="form-control" value="@ViewBag.Search" style="width: auto;display: inline-block;" />
+			<input type="submit" value="Search" class="btn btn-dark" /> |
+			<a asp-action="Products" asp-route-page="@ViewBag.Page">Clear</a>
+		</div>
+	</form>
+	<hr />
+	<div class="row">
+		<div class="col">
+			<table class="table table-responsive table-light table-hover">
+				<thead>
+					<tr>
+						<th scope="col">
+							<a asp-route-sort="@ViewBag.IdSort" asp-route-page="@Model.PageNumber">
+								@Html.DisplayNameFor(model => model.First().Id)
+							</a>
+						</th>
+						<th scope="col">
+							<a asp-route-sort="@ViewBag.NameSort" asp-route-page="@Model.PageNumber">
+								@Html.DisplayNameFor(model => model.First().Name)
+							</a>
+						</th>
+						<th scope="col">
+							@Html.DisplayNameFor(model => model.First().Brand)
+						</th>
+						<th scope="col">
+							@Html.DisplayNameFor(model => model.First().Category)
+						</th>
+						<th scope="col">
+							@Html.DisplayNameFor(model => model.First().Size)
+						</th>
+						<th scope="col">
+							@Html.DisplayNameFor(model => model.First().Height)
+						</th>
+						<th scope="col">
+							@Html.DisplayNameFor(model => model.First().Material)
+						</th>
+						<th scope="col">
+							@Html.DisplayNameFor(model => model.First().Price)
+						</th>
+						<th scope="col">
+							@Html.DisplayNameFor(model => model.First().Discount)
+						</th>
+						<th scope="col">
+							<a asp-route-sort="@ViewBag.PriceTotalSort" asp-route-page="@Model.PageNumber">
+								@Html.DisplayNameFor(model => model.First().PriceTotal)
+							</a>
+						</th>
+						<th scope="col">
+							<a asp-route-sort="@ViewBag.CreatedAtSort" asp-route-page="@Model.PageNumber">
+								@Html.DisplayNameFor(model => model.First().CreatedAt)
+							</a>
+						</th>
+						<th scope="col">
+							Action
+						</th>
+					</tr>
+
+
+				</thead>
+				<tbody>
+					@foreach (var item in Model)
+					{
+						<tr>
+							<td>@item.Id</td>
+							<td>@item.Name</td>
+							<td>@item.Brand?.Name</td>
+							<td>@item.Category?.Name</td>
+							<td>@item.Size</td>
+							<td>@(item.Height)kg</td>
+							<td>
+								<p class="truncate-2">
+									@item.Material
+								</p>
+							</td>
+							<td>$@item.Price</td>
+							<td>@item.Discount%</td>
+							<td>$@item.PriceTotal</td>
+							<td>@item.CreatedAt</td>
+							<td>
+								<div class="d-flex">
+									<a asp-action="DetailsProduct" asp-route-id="@item.Id" class="btn btn-success me-3">Details</a>
+									<a asp-action="EditProduct" asp-route-id="@item.Id" class="btn btn-warning me-3">Edit</a>
+
+									<button type="button" onclick="handleDeleteProduct(@item.Id)" id="@item.Id" class="btn btn-danger">
+										Delete
+									</button>
+								</div>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+	@Html.PagedListPager(Model, page => Url.Action("Products", new { page, sort = ViewBag.CurrentSort, search = ViewBag.Search }), new PagedListRenderOptions()
+	{
+	LiElementClasses = new List<string> { "page-item" },
+	PageClasses = new List<String> { "page-link" },
+	})
+</div>

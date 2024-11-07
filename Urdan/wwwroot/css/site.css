@@ -1,0 +1,257 @@
+﻿@font-face {
+    font-family: "Poppins";
+    src: url("../lib/font/Poppins-Thin.ttf");
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("../lib/font/Poppins-Light.ttf");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("../lib/font/Poppins-Regular.ttf");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("../lib/font/Poppins-Medium.ttf");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("../lib/font/Poppins-SemiBold.ttf");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("../lib/font/Poppins-Bold.ttf");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("../lib/font/Poppins-ExtraBold.ttf");
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("../lib/font/Poppins-Black.ttf");
+    font-weight: 900;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*:focus {
+    outline: none;
+}
+
+:root {
+    --orange: rgb(233 119 48);
+    --red: rgb(255 23 72);
+    --black: rgb(38 38 38);
+    --darkgray: rgb(65 65 65);
+}
+
+body {
+    width: 100%;
+    color: black;
+    font-family: Poppins, sans-serif;
+    position: relative;
+    font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-block: 0;
+    margin-bottom: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+button {
+    background: inherit;
+    border: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: var(--orange);
+}
+
+p {
+    font-size: 14px;
+    line-height: 24px;
+}
+
+button, a, img {
+    transition: all .3s ease;
+}
+
+
+.scrollUp {
+    position: fixed;
+    z-index: 999;
+    bottom: 53px;
+    right: 20px;
+    border-radius: 50%;
+    background: var(--black);
+    color: white;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s ease;
+}
+
+.scrollUp:hover {
+    background: var(--orange);
+}
+
+.mb-30 {
+    margin-bottom: 30px;
+}
+
+
+.mb-40 {
+    margin-bottom: 40px;
+}
+
+.pt-100 {
+    padding-top: 70px;
+}
+
+.pb-70 {
+    padding-bottom: 40px;
+}
+
+.pb-95 {
+    padding-bottom: 65px;
+}
+
+
+.pt-80 {
+    padding-top: 70px;
+}
+
+
+.pb-35 {
+    padding-bottom: 25px;
+}
+
+.pt-95 {
+    padding-top: 65px;
+}
+
+pb-100 {
+    padding-bottom: 70px;
+}
+
+
+.btn-hover {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+
+.btn-hover::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: auto;
+    right: 0;
+    width: 0;
+    height: 100%;
+    background: black;
+    transition: all .5s cubic-bezier(0.65,0.05,0.36,1);
+    z-index: -1;
+}
+
+
+
+.btn-hover:hover::after {
+    width: 100%;
+    left: 0;
+    right: auto;
+}
+
+.scrollbar {
+    overflow-y: auto;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgb(183 183 183);
+}
+
+.scrollbar::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+
+
+@media only screen and (min-width: 768px) {
+
+    .pt-80 {
+        padding-top: 80px;
+    }
+
+    .pt-100 {
+        padding-top: 100px;
+    }
+
+    .pb-70 {
+        padding-bottom: 70px;
+    }
+
+    .pb-95 {
+        padding-bottom: 95px;
+    }
+
+    .pb-35 {
+        padding-bottom: 35px;
+    }
+
+    .pt-95 {
+        padding-top: 95px;
+    }
+
+    .pb-100 {
+        padding-bottom: 100px;
+    }
+
+
+    .scrollUp {
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
+    }
+}
+

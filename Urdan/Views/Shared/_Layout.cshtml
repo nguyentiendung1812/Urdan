@@ -1,0 +1,36 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Urdan - @ViewBag.Title</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/lib/jquery-ui/jquery-ui.min.css" />
+	<link rel="stylesheet" href="~/lib/animate/animate.css" />
+	<link rel="stylesheet" href="~/lib/swiper/package/swiper-bundle.min.css" />
+	<link rel="stylesheet" href="~/lib/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+	<link rel="stylesheet" href="~/lib/aos-master/dist/aos.css" />
+	<link rel="stylesheet" href="~/lib/themify-icons/themify-icons.css" />
+	<link rel="stylesheet" href="~/css/main-bundle.min.css" />
+</head>
+<body>
+	<partial name="_Header" />
+	@RenderBody()
+	<partial name="_Footer" />
+	
+	<button type="button" class="scrollUp" title="Go to top">
+		<i class="ti-arrow-up"></i>
+	</button>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+  <script src="~/lib/jquery-ui/jquery-ui.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/lib/swiper/package/swiper-bundle.min.js"></script>
+	<script src="~/lib/aos-master/dist/aos.js"></script>
+	<script src="~/lib/easyzoom/dist/easyzoom.js"></script>
+	<script src="~/lib/magnific-popup/magnific-popup.min.js"></script>
+	<script src="~/js/main-bundle.min.js"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+		

@@ -1,0 +1,35 @@
+﻿<div class="breadcrumb-section">
+	<div class="container text-center position-relative">
+		<h2 data-aos="fade-up" data-aos-delay="200">
+			@ViewBag.Title
+		</h2>
+		<ul data-aos="fade-up" data-aos-delay="400">
+			<li>
+				<a href="/">Home</a>
+			</li>
+			<li>
+				<i class="ti-angle-right"></i>
+			</li>
+
+			@if ((string)ViewBag.CategoryName != null)
+			{
+				<li>
+					<a asp-action="ProductCategory" asp-route-categoryName="@ViewBag.CategoryName" asp-controller="Products">@ViewBag.CategoryName</a>
+				</li>
+				<li>
+					<i class="ti-angle-right"></i>
+				</li>
+			}
+
+			<li>
+				@ViewBag.Title
+			</li>
+		</ul>
+	</div>
+	<div class="breadcrumb-img breadcrumb-img-1" data-aos="fade-right" data-aos-delay="200">
+		<img src="~/images/breadcrumb-1.webp" alt="Breadcrumb 1" />
+	</div>
+	<div class="breadcrumb-img breadcrumb-img-2" data-aos="fade-left" data-aos-delay="200">
+		<img src="~/images/breadcrumb-2.webp" alt="Breadcrumb 2" />
+	</div>
+</div>

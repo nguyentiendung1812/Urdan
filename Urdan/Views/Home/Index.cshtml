@@ -1,0 +1,319 @@
+﻿@model List<Product>
+@{
+	ViewBag.Title = "Home";
+}
+
+
+<section class="swiper hero-slider-section">
+	<div class="swiper-wrapper">
+		<div class="swiper-slide">
+			<div class="slider">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-6 col-md-6">
+							<div class="slide-content">
+								<h3 class="animate__animated">
+									new arrival
+								</h3>
+								<h1 class="animate__animated">
+									Welcome to <br /> Electronics store
+								</h1>
+								<a href="/Products" class="btn-hover animate__animated">
+									<span>
+										Shop Now
+									</span>
+									<i class="pe-7s-angle-right"></i>
+								</a>
+							</div>
+
+						</div>
+						<div class="col-lg-6 col-md-6">
+							<div class="slide-img">
+								<img src="~/images/pexels-pixabay-356056.jpg" class="animate__animated w-100" alt="hero-img" />
+								<div class="product-offer animate__animated">
+									<h5>
+										30%
+										<span>off</span>
+									</h5>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class="slider">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-6 col-md-6">
+							<div class="slide-content">
+								<h3 class="animate__animated">
+									new arrival
+								</h3>
+								<h1 class="animate__animated">
+									Summer <br /> Collection
+								</h1>
+								<a href="/Products" class="btn-hover animate__animated">
+									<span>
+										Shop Now
+									</span>
+									<i class="pe-7s-angle-right"></i>
+								</a>
+							</div>
+
+						</div>
+						<div class="col-lg-6 col-md-6">
+							<div class="slide-img">
+								<img src="~/images/slider-img-1-2.webp" class="animate__animated w-100" alt="hero-img" />
+								<div class="product-offer animate__animated">
+									<h5>
+										30%
+										<span>off</span>
+									</h5>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</section>
+@* <section class="banner-section pt-100 pb-70">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-md-6 col-12">
+				<div class="banner mb-30" data-aos="fade-up" data-aos-delay="200">
+					<a href="/Products" class="d-block">
+						<img src="~/images/banner-1.webp" class="w-100" />
+					</a>
+					<div class="banner-content">
+						<h5>
+							new arrival
+						</h5>
+						<h3>
+							Office Chair
+						</h3>
+						<a href="/Products">
+							Shop Now
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 col-12">
+				<div class="banner mb-30" data-aos="fade-up" data-aos-delay="400">
+					<a href="/Products" class="d-block">
+						<img src="~/images/banner-2.webp" class="w-100" />
+					</a>
+					<div class="banner-content">
+						<h5>
+							new arrival
+						</h5>
+						<h3>
+							Hanging Chair
+						</h3>
+						<a href="/Products">
+							Shop Now
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 col-12">
+				<div class="banner mb-30" data-aos="fade-up" data-aos-delay="600">
+					<a href ="/Products" class="d-block">
+						<img src="~/images/banner-3.webp" class="w-100" />
+					</a>
+					<div class="banner-content">
+						<h5>
+							new arrival
+						</h5>
+						<h3>
+							Folding Chair
+						</h3>
+						<a href="/Products">
+							Shop Now
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="product-section pb-95"> *@
+	<div class="container">
+		<div class="title" data-aos="fade-up" data-aos-delay="200">
+			<h2>
+				Deal of the day
+			</h2>
+		</div>
+		<div class="swiper product-slider">
+      <div class="swiper-wrapper">
+        @foreach (var product in Model)
+        {
+          <div class="swiper-slide product-slide">
+            <div data-aos="fade-up" data-aos-delay="200">
+              <div class="product-img">
+                <a asp-action="Index" asp-controller="Product" asp-route-name="@product.Name">
+                  <img src="@product.Images?.FirstOrDefault()?.Url" alt="Product Image" />
+                </a>
+                <span class="product-discount">
+                  -@product.Discount%
+                </span>
+                <div class="product-action-1">
+                  <button type="button" title="Wishlist">
+                    <i class="pe-7s-like"></i>
+                  </button>
+                  <button type="button" title="Quick View">
+                    <i class="pe-7s-look"></i>
+                  </button>
+                </div>
+                <div class="product-action-2">
+                  <a asp-action="AddToCart" asp-route-productId="@product.Id" asp-controller="Cart" title="Add To Cart" class="product-action-btn-2">
+                    <i class="pe-7s-cart"></i>
+                    Add to cart
+                  </a>
+                </div>
+              </div>
+              <div class="product-content">
+                <h3>
+                  <a asp-action="Index" asp-controller="Product" asp-route-name="@product.Name">
+                    @product.Name
+                  </a>
+                </h3>
+                <div class="product-price">
+                  <span class="old-price">
+                    $@product.Price
+                  </span>
+                  <span class="new-price">
+                    $@product.PriceTotal
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+      </div>
+			<div class="product-navigation">
+				<div data-aos="fade-up" data-aos-delay="200">
+					<button type="button" class="product-slider-prev" title="Prev">
+						<i class="ti-angle-left"></i>
+					</button>
+					<button type="button" class="product-slider-next" title="Next">
+						<i class="ti-angle-right"></i>
+					</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+<section class="banner-section pb-70">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-7 col-md-7">
+				<div class="banner mb-30" data-aos="fade-up" data-aos-delay="200">
+					<a href="/Products">
+						<img src="~/images/banner-4.webp" alt="Banner" />
+					</a>
+					<div class="banner-content-2">
+						<span>Sale 30%</span>
+						<h3>
+							New Furniture
+						</h3>
+						<p>Lorem ipsum dolor sit amet consecte adipisicing elit sed do</p>
+						<a href="/Products" class="btn-hover">
+							Shop Now
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-5 col-md-5">
+				<div class="banner mb-30" data-aos="fade-up" data-aos-delay="400">
+					<a href="/Products">
+						<img src="~/images/banner-5.webp" alt="Banner" />
+					</a>
+					<div class="banner-content-3">
+						<h3>
+							Up to 30%
+							<img src="~/images/sale.webp" alt="Sale" />
+							Every Item
+						</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="service-section pb-70">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-30">
+				<div data-aos="fade-up" data-aos-delay="200" class="service">
+					<div class="service-img">
+						<img src="~/images/car.webp" alt="Service" />
+					</div>
+					<div class="service-content">
+						<h3>
+							Free shipping
+						</h3>
+						<p>
+							Free shipping on all order
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-30">
+				<div data-aos="fade-up" data-aos-delay="400" class="service">
+					<div class="service-img">
+						<img src="~/images/time.webp" alt="Service" />
+					</div>
+					<div class="service-content">
+						<h3>
+							Support 24/7
+						</h3>
+						<p>
+							Support 24/7 hours a day
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-30">
+				<div data-aos="fade-up" data-aos-delay="600" class="service">
+					<div class="service-img">
+						<img src="~/images/dollar.webp" alt="Service" />
+					</div>
+					<div class="service-content">
+						<h3>
+							Money Return
+						</h3>
+						<p>
+							Back Guarantee Under
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-30">
+				<div data-aos="fade-up" data-aos-delay="800" class="service">
+					<div class="service-img">
+						<img src="~/images/discount.webp" alt="Service" />
+					</div>
+					<div class="service-content">
+						<h3>
+							Order Discount
+						</h3>
+						<p>
+							On every order over $150
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

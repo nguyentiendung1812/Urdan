@@ -1,0 +1,14 @@
+[
+  {
+    "outputFileName": "wwwroot/css/main-bundle.css",
+    "inputFiles": [
+      "wwwroot/css/*.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/main-bundle.js",
+    "inputFiles": [
+      "wwwroot/js/*.js"
+    ]
+  }
+]

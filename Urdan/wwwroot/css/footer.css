@@ -1,0 +1,98 @@
+﻿.footer .footer-top {
+    background: rgb(244 244 244);
+}
+
+.footer .footer-bottom {
+    background: rgb(240 240 240);
+}
+
+
+.footer .footer-about p {
+    margin: 20px 0;
+    color: rgb(74 74 74);
+    font-weight: 300;
+}
+
+.footer h3.footer-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(50 50 50);
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.footer ul li a {
+    font-size: 14px;
+    color: rgb(74 74 74);
+    font-weight: 300;
+}
+
+
+.footer ul li a:hover {
+    color: var(--orange);
+}
+
+
+.footer-address ul li {
+    font-size: 14px; 
+    font-weight: 300;
+    margin-bottom: 6px;
+    color: rgb(74 74 74);
+}
+
+.footer-address ul li span {
+    font-weight: 500;
+}
+
+.footer-address .open-time {
+    margin-top: 20px;
+}
+
+.footer-address .open-time p {
+    color: rgb(74 74 74);
+    font-size: 16px;
+    margin-bottom: 2px;
+    font-weight: 300;
+}
+
+.footer-address .open-time p span {
+    color: var(--orange);
+}
+
+.footer-bottom p {
+    margin: 0;
+    padding: 12px 0;
+    text-align: center;
+    color: rgb(51 51 51);
+    font-weight: 300;
+}
+
+
+.footer-bottom p.copyright i {
+    color: rgb(250 9 9);
+    margin: 0 5px;
+}
+
+
+.footer-bottom p.copyright span {
+    color: var(--orange);
+    font-weight: 500;
+}
+
+@media only screen and (min-width: 768px) {
+    .footer .footer-about p {
+        font-size: 16px;
+        line-height: 28px;
+    }
+
+    .footer ul li a {
+        font-size: 16px;
+    }
+
+    .footer-address ul li {
+        font-size: 16px;
+    }
+}

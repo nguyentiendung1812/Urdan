@@ -1,0 +1,38 @@
+﻿.product-quickview .modal-body {
+    padding: 20px;
+}
+
+.product-quickview .modal-dialog {
+    max-width: 1070px;
+}
+
+.product-quickview .product-content {
+    padding-left: 30px;
+}
+
+.product-quickview .modal-header {
+    padding: 0;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+}
+
+.product-quickview .close {
+    background: #333;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    height: 40px;
+    width: 40px;
+    line-height: 42px;
+}
+
+.product-quickview .close:hover {
+    background: var(--orange);
+}
+
+.product-quickview .product-content p {
+    margin-bottom: 30px;
+    color: rgb(83 83 83);
+}

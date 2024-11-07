@@ -1,0 +1,56 @@
+﻿@model List<Brand>
+
+
+@{
+  ViewBag.Title = "Brands";
+}
+
+<div class="container pt-4">
+  <h1>@ViewBag.Title</h1>
+  <a asp-action="CreateBrand" class="btn btn-primary mb-2">Create new</a>
+  <hr />
+  <div class="row pt-2">
+    <div class="col">
+      <table class="table table-responsive table-light table-hover" >
+        <thead>
+          <tr>
+            <th scope="col">
+              @Html.DisplayNameFor(model => model.First().Id)
+            </th>
+            <th scope="col">
+              @Html.DisplayNameFor(model => model.First().Name)
+            </th>
+            <th scope="col">
+              ProductCount
+            </th>
+            <th scope="col">
+              Action
+            </th>
+          </tr>
+
+
+        </thead>
+        <tbody>
+          @foreach (var item in Model)
+          {
+            <tr>
+              <td>@item.Id</td>
+              <td>@item.Name</td>
+              <td>@item.Products?.Count</td>
+              <td>
+                <div class="d-flex">
+                  <a asp-action="EditBrand" asp-route-id="@item.Id" class="btn btn-warning me-3">Edit</a>
+
+                  <button id="@item.Id" onclick="handleDeleteBrand(@item.Id)"  class="btn btn-danger">
+                    Delete
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

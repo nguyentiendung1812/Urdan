@@ -1,0 +1,60 @@
+﻿@model List<Address>
+@{
+	ViewBag.Title = "Addresses";
+}
+
+<div class="container pt-4">
+  <h1>@ViewBag.Title</h1>
+  <a asp-action="CreateAddress" class="btn btn-primary mb-2">Create new</a>
+  <hr />
+  <div class="row pt-2">
+    <table class="table table-light table-hover">
+      <thead>
+        <tr>
+          <th scope="col">
+            @Html.DisplayNameFor(model => model.First().Id)
+          </th>
+          <th scope="col">
+            @Html.DisplayNameFor(model => model.First().Ward)
+          </th>
+          <th scope="col">
+            @Html.DisplayNameFor(model => model.First().District)
+          </th>
+          <th scope="col">
+            @Html.DisplayNameFor(model => model.First().City)
+          </th>
+          <th scope="col">
+            @Html.DisplayNameFor(model => model.First().Detail)
+          </th>
+          <th scope="col">
+            @Html.DisplayNameFor(model => model.First().User)
+          </th>
+          <th scope="col">
+            Action
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var item in Model)
+        {
+          <tr>
+            <td>@item.Id</td>
+            <td>@item.Ward</td>
+            <td>@item.District</td>
+            <td>@item.City</td>
+            <td>@item.Detail</td>
+            <td>@item.User?.Username</td>
+            <td>
+              <div class="d-flex">
+                <a asp-action="EditAddress" asp-route-id="@item.Id" class="btn btn-warning me-3">Edit</a>
+                <button type="button" id="@item.Id" onclick="handleDeleteAddress(@item.Id)" class="btn btn-danger">
+                  Delete
+                </button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
